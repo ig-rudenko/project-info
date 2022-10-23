@@ -186,4 +186,7 @@ if __name__ == '__main__':
     parser.add_argument('directory', help='Путь до папки с проектом')
     args = parser.parse_args()
 
-    start_scan(pathlib.Path(args.directory), not args.full)
+    try:
+        start_scan(pathlib.Path(args.directory), not args.full)
+    except KeyboardInterrupt:
+        print(Colors.WARNING, '\nОстановка', Colors.ENDC)
