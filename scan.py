@@ -141,9 +141,7 @@ def scan_files(files: List[pathlib.Path]):
 
         for key in ["lines", "symbols", "size"]:
             # Для определенного типа файла добавляем данные
-            files_types[file.suffix][key] = files_types[file.suffix].get(
-                key, 0
-            ) + getattr(file_info, key)
+            files_types[file.suffix][key] = files_types[file.suffix].get(key, 0) + getattr(file_info, key)
 
         # Увеличиваем кол-во файлов данного типа на один
         files_types[file.suffix]["count"] = files_types[file.suffix].get("count", 0) + 1
@@ -165,9 +163,7 @@ def start_scan(base_dir: pathlib.Path, use_gitignore: bool = True):
     files_to_scan = []
 
     # Список с файлами и папками, что надо проигнорировать
-    gitignore_list = (
-        get_gitignore(base_dir) if use_gitignore else ["^\\.git$", "^\\.idea$"]
-    )
+    gitignore_list = get_gitignore(base_dir) if use_gitignore else ["^\\.git$", "^\\.idea$"]
 
     # Ищем файлы
     find_files(base_dir, gitignore_list, files_to_scan)
